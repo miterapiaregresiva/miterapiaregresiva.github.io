@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="https://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="https://wellformedweb.org/CommentAPI/"
-	xmlns:dc="https://purl.org/dc/elements/1.1/"
-	xmlns:atom="https://www.w3.org/2005/Atom"
-	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -36,7 +36,7 @@
 		<category><![CDATA[regresión guiada]]></category>
 		<category><![CDATA[revivir]]></category>
 		<category><![CDATA[Terapia regresiva]]></category>
-		<guid isPermaLink="false">https://miterapiaregresivalocal.local/?p=86</guid>
+		<guid isPermaLink="false">http://miterapiaregresivalocal.local/?p=86</guid>
 
 					<description><![CDATA[¿Es que acaso no son lo mismo? No, no lo son, y si vas a pedir una cita, ya sea conmigo o con cualquier otra persona que se dedique a esto, es importante que comprendas la diferencia: Como hemos visto anteriormente, una regresión es recordar, revivir,&#160; hechos del pasado. Ese pasado puede ser de esta [&#8230;]]]></description>
 		
@@ -59,7 +59,7 @@
 		<category><![CDATA[relajación]]></category>
 		<category><![CDATA[sensación]]></category>
 		<category><![CDATA[visión]]></category>
-		<guid isPermaLink="false">https://miterapiaregresivalocal.local/?p=78</guid>
+		<guid isPermaLink="false">http://miterapiaregresivalocal.local/?p=78</guid>
 
 					<description><![CDATA[Una de las preguntas que me hacen más frecuentemente es: ¿Cómo es vivir una regresión?. Mi respuesta es otra pregunta: ¿Cómo es recordar acontecimientos de tu vida actual? Pues sí, es muy parecido. Si te pido que intentes recordar ahora un momento feliz de tu vida, aflorará un recuerdo. Ese recuerdo, según cada persona,&#160; puede [&#8230;]]]></description>
 		
@@ -83,7 +83,7 @@
 		<category><![CDATA[relajación profunda]]></category>
 		<category><![CDATA[sesión de terapia regresiva]]></category>
 		<category><![CDATA[Terapia regresiva]]></category>
-		<guid isPermaLink="false">https://miterapiaregresivalocal.local/?p=66</guid>
+		<guid isPermaLink="false">http://miterapiaregresivalocal.local/?p=66</guid>
 
 					<description><![CDATA[Una regresión consiste en revivir un evento de nuestro pasado. Al hacerlo se conecta con los pensamientos, sensaciones físicas y emociones que estaban allí presentes. La terapia regresiva tiene como finalidad ayudar a comprender cómo estos eventos pasados pueden estar afectando en el presente y trabaja tanto con recuerdos de esta vida como de otras. [&#8230;]]]></description>
 		
