@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>relajación profunda &#8211; miterapiaregresiva.com</title>
+	<atom:link href="http://miterapiaregresiva.com/tag/relajacion-profunda/feed/" rel="self" type="application/rss+xml" />
+	<link>http://miterapiaregresiva.com/</link>
+	<description>Terapeuta regresiva en Tenerife</description>
+	<lastBuildDate>Sun, 02 Apr 2023 15:16:56 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>¿En qué consiste la terapia regresiva?</title>
+		<link>http://miterapiaregresiva.com/en-que-consiste-la-terapia-regresiva/</link>
+		
+		<dc:creator><![CDATA[miterapiaregresiva]]></dc:creator>
+		<pubDate>Sat, 01 Apr 2023 17:17:38 +0000</pubDate>
+				<category><![CDATA[blog]]></category>
+		<category><![CDATA[Terapia Regresiva]]></category>
+		<category><![CDATA[comprender]]></category>
+		<category><![CDATA[hipnosis intermedia]]></category>
+		<category><![CDATA[liberarse de patrones emocionales negativos]]></category>
+		<category><![CDATA[pasado]]></category>
+		<category><![CDATA[recuerdo]]></category>
+		<category><![CDATA[regresión]]></category>
+		<category><![CDATA[relajación profunda]]></category>
+		<category><![CDATA[sesión de terapia regresiva]]></category>
+		<category><![CDATA[Terapia regresiva]]></category>
+		<guid isPermaLink="false">http://miterapiaregresivalocal.local/?p=66</guid>
+
+					<description><![CDATA[Una regresión consiste en revivir un evento de nuestro pasado. Al hacerlo se conecta con los pensamientos, sensaciones físicas y emociones que estaban allí presentes. La terapia regresiva tiene como finalidad ayudar a comprender cómo estos eventos pasados pueden estar afectando en el presente y trabaja tanto con recuerdos de esta vida como de otras. [&#8230;]]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
