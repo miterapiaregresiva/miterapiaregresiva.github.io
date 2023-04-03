@@ -2,7 +2,7 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://miterapiaregresiva.com/</loc>
-		<lastmod>2023-04-03T21:20:43+00:00</lastmod>
+		<lastmod>2023-04-03T21:33:52+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://miterapiaregresiva.com/terapia-regresiva-en-tenerife/biblioteca-de-terapia-regresiva/a-traves-del-tiempo-de-brian-weiss/</loc>
@@ -112,8 +112,21 @@
 		</image:image>
 	</url>
 	<url>
+		<loc>https://miterapiaregresiva.com/terapia-regresiva-en-tenerife/blog-de-terapia-regresiva/como-es-el-estado-regresivo/</loc>
+		<lastmod>2023-04-03T21:20:43+00:00</lastmod>
+		<image:image>
+			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/6173e6c5-1721-4160-941e-16dede01cf59.jpg</image:loc>
+		</image:image>
+		<image:image>
+			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/1tcqctjlorq.jpg</image:loc>
+		</image:image>
+		<image:image>
+			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/4ascchq1hzk.jpg</image:loc>
+		</image:image>
+	</url>
+	<url>
 		<loc>https://miterapiaregresiva.com/terapia-regresiva-en-tenerife/blog-de-terapia-regresiva/terapia-regresiva-vs-regresion/</loc>
-		<lastmod>2023-04-03T21:19:36+00:00</lastmod>
+		<lastmod>2023-04-03T21:33:52+00:00</lastmod>
 		<image:image>
 			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/3ec5n6ghwe8.jpg</image:loc>
 		</image:image>
@@ -128,19 +141,6 @@
 		</image:image>
 		<image:image>
 			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/0_fkphulv-m.jpg</image:loc>
-		</image:image>
-	</url>
-	<url>
-		<loc>https://miterapiaregresiva.com/terapia-regresiva-en-tenerife/blog-de-terapia-regresiva/como-es-el-estado-regresivo/</loc>
-		<lastmod>2023-04-03T21:20:43+00:00</lastmod>
-		<image:image>
-			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/6173e6c5-1721-4160-941e-16dede01cf59.jpg</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/1tcqctjlorq.jpg</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://miterapiaregresiva.com/wp-content/uploads/2023/04/4ascchq1hzk.jpg</image:loc>
 		</image:image>
 	</url>
 </urlset>
