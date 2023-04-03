@@ -1,1 +1,0 @@
-miterapiaregresiva.com
