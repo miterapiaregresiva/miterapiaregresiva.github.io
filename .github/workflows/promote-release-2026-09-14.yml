@@ -1,4 +1,4 @@
-name: Promote brand lockup release 2026-09-14
+name: Promote static HTML brand release 2026-09-14
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Checkout frozen staging release
         run: |
-          git clone --depth 1 --branch release-2026-09-14-brand-lockup https://github.com/miterapiaregresiva/stg.git source
+          git clone --depth 1 --branch release-2026-09-14-static-brand-html https://github.com/miterapiaregresiva/stg.git source
 
       - name: Copy release into production
         run: |
@@ -79,6 +79,7 @@ jobs:
 
           root = Path('prod')
           problems = []
+          header_pages = 0
           for path in root.rglob('*'):
               if not path.is_file() or '.git' in path.parts or '.github' in path.parts:
                   continue
@@ -92,20 +93,30 @@ jobs:
                   problems.append(f'{path}: contains /mtr/')
               if 'stg.miterapiaregresiva.com' in text:
                   problems.append(f'{path}: contains staging hostname')
-              if path.suffix.lower() == '.html' and path.name != '404.html':
-                  if 'noindex,nofollow' in text.lower():
-                      problems.append(f'{path}: still noindex')
-                  if 'rel="canonical"' not in text and "rel='canonical'" not in text:
-                      problems.append(f'{path}: missing canonical')
+              if path.suffix.lower() == '.html':
+                  if 'site-header' in text:
+                      header_pages += 1
+                      if text.count('class="brand brand-lockup"') != 1:
+                          problems.append(f'{path}: static brand lockup missing or duplicated')
+                      for marker in ['class="brand-copy"', 'Explora tu historia. Comprende tu presente.', 'Terapia regresiva en Tenerife', 'assets/brand-lockup.css']:
+                          if marker not in text:
+                              problems.append(f'{path}: missing brand marker {marker}')
+                  if path.name != '404.html':
+                      if 'noindex,nofollow' in text.lower():
+                          problems.append(f'{path}: still noindex')
+                      if 'rel="canonical"' not in text and "rel='canonical'" not in text:
+                          problems.append(f'{path}: missing canonical')
 
+          if not header_pages:
+              problems.append('no HTML header pages found')
           if not (root / 'assets/brand-lockup.css').exists():
               problems.append('brand-lockup.css missing')
           if not (root / 'assets/images/branding/mi-terapia-regresiva-simbolo.svg').exists():
               problems.append('brand symbol SVG missing')
-          home = (root / 'index.html').read_text(encoding='utf-8')
-          for marker in ['brand-lockup', 'miterapiaregresiva', 'Explora tu historia. Comprende tu presente.', 'Terapia regresiva en Tenerife']:
-              if marker not in home:
-                  problems.append(f'home missing brand marker: {marker}')
+
+          js = (root / 'assets/site.js').read_text(encoding='utf-8')
+          if 'brand.innerHTML' in js or "querySelectorAll('.site-header .brand')" in js:
+              problems.append('site.js still constructs header brand dynamically')
 
           cname = (root / 'CNAME').read_text(encoding='utf-8').strip()
           if cname != 'miterapiaregresiva.com':
@@ -117,6 +128,7 @@ jobs:
               problems.append('404.html must remain noindex')
           if problems:
               raise SystemExit('\n'.join(problems))
+          print(f'Validated {header_pages} static HTML headers for production.')
           PY
 
       - name: Publish release
@@ -129,5 +141,5 @@ jobs:
             echo 'No production changes to publish.'
             exit 0
           fi
-          git commit -m 'Promote brand lockup release to production'
+          git commit -m 'Promote static HTML brand headers to production'
           git push origin main
