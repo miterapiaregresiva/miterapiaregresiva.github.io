@@ -1,0 +1,123 @@
+name: Promote release 2026-09-14
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/promote-release-2026-09-14.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: prod
+
+      - name: Checkout frozen staging release
+        run: |
+          git clone --depth 1 --branch release-2026-09-14 https://github.com/miterapiaregresiva/stg.git source
+
+      - name: Copy release into production
+        run: |
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'CNAME' \
+            source/ prod/
+          printf '%s\n' 'miterapiaregresiva.com' > prod/CNAME
+
+      - name: Apply production metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('prod')
+          production = 'https://miterapiaregresiva.com'
+
+          for path in root.rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('<base href="/mtr/">', '<base href="/">')
+              text = text.replace('https://stg.miterapiaregresiva.com', production)
+
+              if path.name != '404.html':
+                  text = re.sub(r'<meta\s+name=["\']robots["\']\s+content=["\']noindex,nofollow["\']\s*/?>', '', text, flags=re.I)
+
+                  rel = path.relative_to(root)
+                  if rel.as_posix() == 'index.html':
+                      canonical = production + '/'
+                  elif rel.name == 'index.html':
+                      canonical = production + '/' + rel.parent.as_posix().strip('/') + '/'
+                  else:
+                      canonical = production + '/' + rel.as_posix()
+
+                  if 'rel="canonical"' not in text and "rel='canonical'" not in text:
+                      text = text.replace('</head>', f'<link rel="canonical" href="{canonical}"></head>', 1)
+              else:
+                  if 'noindex' not in text.lower():
+                      text = text.replace('</head>', '<meta name="robots" content="noindex,nofollow"></head>', 1)
+
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate production build
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          root = Path('prod')
+          problems = []
+          for path in root.rglob('*'):
+              if not path.is_file() or '.git' in path.parts or '.github' in path.parts:
+                  continue
+              if path.suffix.lower() not in {'.html', '.js', '.css', '.xml', '.txt', '.webmanifest'}:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if '/mtr/' in text:
+                  problems.append(f'{path}: contains /mtr/')
+              if 'stg.miterapiaregresiva.com' in text:
+                  problems.append(f'{path}: contains staging hostname')
+              if path.suffix.lower() == '.html' and path.name != '404.html':
+                  if 'noindex,nofollow' in text.lower():
+                      problems.append(f'{path}: still noindex')
+                  if 'rel="canonical"' not in text and "rel='canonical'" not in text:
+                      problems.append(f'{path}: missing canonical')
+
+          cname = (root / 'CNAME').read_text(encoding='utf-8').strip()
+          if cname != 'miterapiaregresiva.com':
+              problems.append('CNAME is not production domain')
+
+          robots = (root / 'robots.txt').read_text(encoding='utf-8')
+          if 'Allow: /' not in robots or 'https://miterapiaregresiva.com/sitemap.xml' not in robots:
+              problems.append('robots.txt is not production-ready')
+
+          page404 = (root / '404.html').read_text(encoding='utf-8').lower()
+          if 'noindex' not in page404:
+              problems.append('404.html must remain noindex')
+
+          if problems:
+              raise SystemExit('\n'.join(problems))
+          PY
+
+      - name: Publish release
+        working-directory: prod
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No production changes to publish.'
+            exit 0
+          fi
+          git commit -m 'Promote 2026-09-14 release to production'
+          git push origin main
