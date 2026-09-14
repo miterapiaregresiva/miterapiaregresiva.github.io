@@ -1,4 +1,4 @@
-name: Promote hardcoded SEO release 2026-09-14
+name: Promote staging release 2026-09-14
 
 on:
   push:
@@ -20,9 +20,11 @@ jobs:
           fetch-depth: 0
           path: prod
 
-      - name: Checkout frozen staging release
+      - name: Checkout approved staging commit
         run: |
-          git clone --depth 1 --branch release-2026-09-14-seo-hardcoded https://github.com/miterapiaregresiva/stg.git source
+          git clone https://github.com/miterapiaregresiva/stg.git source
+          git -C source checkout --detach ee538223168cad3c8cf679e6b3fda2f6e61f4355
+          test "$(git -C source rev-parse HEAD)" = "ee538223168cad3c8cf679e6b3fda2f6e61f4355"
 
       - name: Copy release into production
         run: |
@@ -30,7 +32,9 @@ jobs:
             --exclude '.git/' \
             --exclude '.github/' \
             --exclude 'CNAME' \
+            --exclude 'TODO.md' \
             source/ prod/
+          rm -f prod/TODO.md
           printf '%s\n' 'miterapiaregresiva.com' > prod/CNAME
 
       - name: Apply production metadata
@@ -113,6 +117,8 @@ jobs:
               problems.append('brand-lockup.css missing')
           if not (root / 'assets/images/branding/mi-terapia-regresiva-simbolo.svg').exists():
               problems.append('brand symbol SVG missing')
+          if (root / 'TODO.md').exists():
+              problems.append('TODO.md must remain staging-only')
 
           js = (root / 'assets/site.js').read_text(encoding='utf-8')
           if 'brand.innerHTML' in js or "querySelectorAll('.site-header .brand')" in js:
@@ -141,5 +147,5 @@ jobs:
             echo 'No production changes to publish.'
             exit 0
           fi
-          git commit -m 'Promote hardcoded local SEO metadata to production'
+          git commit -m 'Promote approved staging release to production'
           git push origin main
