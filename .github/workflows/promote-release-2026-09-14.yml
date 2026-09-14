@@ -1,4 +1,4 @@
-name: Promote static HTML brand release 2026-09-14
+name: Promote hardcoded SEO release 2026-09-14
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Checkout frozen staging release
         run: |
-          git clone --depth 1 --branch release-2026-09-14-static-brand-html https://github.com/miterapiaregresiva/stg.git source
+          git clone --depth 1 --branch release-2026-09-14-seo-hardcoded https://github.com/miterapiaregresiva/stg.git source
 
       - name: Copy release into production
         run: |
@@ -141,5 +141,5 @@ jobs:
             echo 'No production changes to publish.'
             exit 0
           fi
-          git commit -m 'Promote static HTML brand headers to production'
+          git commit -m 'Promote hardcoded local SEO metadata to production'
           git push origin main
